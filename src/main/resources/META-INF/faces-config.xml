@@ -25,7 +25,7 @@
             <source-class>jakarta.faces.component.UIViewRoot</source-class>
         </system-event-listener>
         <system-event-listener>
-            <system-event-listener-class>org.primefaces.showcase.util.ShowcaseSystemEventListener
+            <system-event-listener-class>it.ddalpra.acme.util.ShowcaseSystemEventListener
             </system-event-listener-class>
             <system-event-class>jakarta.faces.event.PostConstructApplicationEvent</system-event-class>
             <source-class>jakarta.faces.application.Application</source-class>
@@ -45,7 +45,7 @@
     <lifecycle>
         <phase-listener>org.primefaces.component.lifecycle.LifecyclePhaseListener</phase-listener>
         <phase-listener>org.primefaces.extensions.application.PrimeFacesResourceProcessor</phase-listener>
-        <phase-listener>org.primefaces.showcase.util.MultiPageMessagesSupport</phase-listener>
+        <phase-listener>it.ddalpra.acme.util.MultiPageMessagesSupport</phase-listener>
     </lifecycle>
 
     <factory>
