@@ -8,7 +8,7 @@
 
     <function>
         <function-name>getFilesContent</function-name>
-        <function-class>org.primefaces.showcase.util.ShowcaseUtil</function-class>
+        <function-class>it.ddalpra.acme.util.ShowcaseUtil</function-class>
         <function-signature>java.util.List getFilesContent(java.lang.String,java.lang.Boolean))</function-signature>
     </function>
 
