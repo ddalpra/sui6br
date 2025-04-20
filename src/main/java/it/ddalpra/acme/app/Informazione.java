@@ -12,28 +12,24 @@ import jakarta.inject.Named;
 @Named
 @RequestScoped  
 public class Informazione {
+
     @Inject
     @IdToken
     JsonWebToken idToken;
-    @Inject
-    
+    @Inject    
     JsonWebToken accessToken;
     @Inject
     RefreshToken refreshToken;
 
-
-    private String username;
-
+    private String fullName;
 
     public String getUsername() {
         if (idToken == null) {
             return "N/D";
         }
-        Object userName = this.idToken.getClaim(Claims.preferred_username);
-        if (userName == null) {
-            return "N/D";
-        }
-        return userName.toString();
-    }
 
+       fullName = this.idToken.getClaim(Claims.given_name).toString() + " " 
+       + this.idToken.getClaim(Claims.family_name).toString();
+        return fullName;
+    }
 }
