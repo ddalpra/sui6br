@@ -1,4 +1,4 @@
-package it.ddalpra.acme.util;
+package it.ddalpra.acme.domain.util;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Named;

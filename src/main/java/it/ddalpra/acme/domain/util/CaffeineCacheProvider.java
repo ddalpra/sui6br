@@ -1,4 +1,4 @@
-package it.ddalpra.acme.util;
+package it.ddalpra.acme.domain.util;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;

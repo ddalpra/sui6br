@@ -1,4 +1,4 @@
-package it.ddalpra.acme.app;
+package it.ddalpra.acme.adapter.in.web.app;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package it.ddalpra.acme.util;
+package it.ddalpra.acme.domain.util;
 
 import java.io.Serial;
 import java.io.Serializable;

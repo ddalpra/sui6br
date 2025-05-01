@@ -1,4 +1,4 @@
-package it.ddalpra.acme.menu;
+package it.ddalpra.acme.domain.menu;
 
 import java.io.Serializable;
 import java.util.List;

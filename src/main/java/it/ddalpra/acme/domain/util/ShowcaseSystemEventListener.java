@@ -1,4 +1,4 @@
-package it.ddalpra.acme.util;
+package it.ddalpra.acme.domain.util;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.export.DataExporters;

@@ -1,4 +1,4 @@
-package it.ddalpra.acme.util;
+package it.ddalpra.acme.domain.util;
 
 import jakarta.el.ELException;
 import jakarta.faces.context.FacesContext;

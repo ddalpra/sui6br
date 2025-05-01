@@ -1,4 +1,4 @@
-package it.ddalpra.acme.menu;
+package it.ddalpra.acme.domain.menu;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -8,7 +8,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 
-@Named
+@Named("appMenu")
 @ApplicationScoped
 public class AppMenu {
 

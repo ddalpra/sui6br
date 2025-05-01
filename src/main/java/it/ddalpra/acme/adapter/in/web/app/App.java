@@ -1,20 +1,13 @@
-package it.ddalpra.acme.app;
+package it.ddalpra.acme.adapter.in.web.app;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Locale;
-
-import org.eclipse.microprofile.jwt.Claims;
-import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.primefaces.context.PrimeApplicationContext;
-
-import io.quarkus.oidc.IdToken;
-import io.quarkus.oidc.RefreshToken;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import it.ddalpra.acme.domain.Country;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
@@ -24,16 +17,6 @@ public class App implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-
-    @Inject
-    @IdToken
-    JsonWebToken idToken;
-    @Inject    
-    JsonWebToken accessToken;
-    @Inject
-    RefreshToken refreshToken;
-
-    private String fullName;
 
     private String theme = "saga-blue";
     private boolean darkMode = false;
@@ -74,12 +57,6 @@ public class App implements Serializable {
 
     public void setLocale(Country locale) {
         this.locale = locale;
-    }
-
-    public String getFullName() {
-        fullName = this.idToken.getClaim(Claims.given_name).toString() + " " 
-       + this.idToken.getClaim(Claims.family_name).toString();
-        return fullName;
     }
 
     public void changeTheme(String theme, boolean darkMode) {

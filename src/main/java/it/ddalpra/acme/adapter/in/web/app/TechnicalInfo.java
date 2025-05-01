@@ -1,10 +1,10 @@
-package it.ddalpra.acme.app;
+package it.ddalpra.acme.adapter.in.web.app;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemProperties;
 import org.omnifaces.util.Faces;
 
-import it.ddalpra.acme.util.VirtualMachine;
+import it.ddalpra.acme.domain.util.VirtualMachine;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
