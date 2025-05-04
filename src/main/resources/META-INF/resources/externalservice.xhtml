@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Gestione Dinamica Ticket e Servizi</title>
+</h:head>
+
+<h:body>
+    <h1>Gestione Servizi Esterni</h1>
+    <p:commandButton value="Carica Servizi" actionListener="#{dynamicTicketView.loadAvailableServices}" update="servicesTable newServicePanel editServiceDialog"/>
+
+    <p:dataTable id="servicesTable" value="#{dynamicTicketView.availableServices}" var="service">
+        <p:column headerText="ID">
+            <h:outputText value="#{service.id}"/>
+        </p:column>
+        <p:column headerText="Nome">
+            <h:outputText value="#{service.name}"/>
+        </p:column>
+        <p:column headerText="Base URL">
+            <h:outputText value="#{service.baseUrl}"/>
+        </p:column>
+        <p:column headerText="Azioni">
+            <p:commandButton value="Modifica" actionListener="#{dynamicTicketView.loadServiceToEdit(service.id)}" update=":editServiceDialog" oncomplete="PF('editDialog').show()"/>
+            <p:commandButton value="Elimina" actionListener="#{dynamicTicketView.deleteService(service.id)}" update="servicesTable"/>
+        </p:column>
+    </p:dataTable>
+
+    <p:panel id="newServicePanel" header="Nuovo Servizio">
+        <h:form>
+            <p:outputLabel for="name" value="Nome:"/>
+            <p:inputText id="name" value="#{dynamicTicketView.newService.name}"/>
+
+            <p:outputLabel for="baseUrl" value="Base URL:"/>
+            <p:inputText id="baseUrl" value="#{dynamicTicketView.newService.baseUrl}"/>
+
+            <p:outputLabel for="authType" value="Tipo Autenticazione:"/>
+            <p:selectOneMenu id="authType" value="#{dynamicTicketView.newService.authenticationType}">
+                <f:selectItem itemValue="" itemLabel="Nessuna"/>
+                <f:selectItem itemValue="Basic" itemLabel="Basic"/>
+                <f:selectItem itemValue="Bearer" itemLabel="Bearer"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="username" value="Username:"/>
+            <p:inputText id="username" value="#{dynamicTicketView.newService.username}"/>
+
+            <p:outputLabel for="password" value="Password:"/>
+            <p:password id="password" value="#{dynamicTicketView.newService.password}"/>
+
+            <p:outputLabel for="token" value="Token:"/>
+            <p:inputText id="token" value="#{dynamicTicketView.newService.token}"/>
+
+            <p:commandButton value="Salva Servizio" actionListener="#{dynamicTicketView.saveNewService}" update="servicesTable newServicePanel"/>
+        </h:form>
+    </p:panel>
+
+    <hr/>
+
+    <h1>Elenco Ticket</h1>
+    <h:form>
+        <p:outputLabel for="serviceSelector" value="Seleziona Servizio:"/>
+        <p:selectOneMenu id="serviceSelector" value="#{dynamicTicketView.selectedServiceName}">
+            <f:selectItems value="#{dynamicTicketView.availableServices}" var="service" itemLabel="#{service.name}" itemValue="#{service.name}"/>
+            <p:ajax event="change" listener="#{dynamicTicketView.loadTickets}" update="ticketsTable"/>
+        </p:selectOneMenu>
+        <p:commandButton value="Carica Ticket" actionListener="#{dynamicTicketView.loadTickets}" update="ticketsTable"/>
+    </h:form>
+
+    <p:dataTable id="ticketsTable" value="#{dynamicTicketView.tickets}" var="ticket">
+        <p:column headerText="ID">
+            <h:outputText value="#{ticket.id}"/>
+        </p:column>
+        <p:column headerText="Titolo">
+            <h:outputText value="#{ticket.title}"/>
+        </p:column>
+        <p:column headerText="Descrizione">
+            <h:outputText value="#{ticket.description}"/>
+        </p:column>
+    </p:dataTable>
+
+    <p:dialog header="Modifica Servizio" widgetVar="editDialog" modal="true" resizable="false">
+        <h:form>
+            <p:outputLabel for="editName" value="Nome:"/>
+            <p:inputText id="editName" value="#{dynamicTicketView.selectedServiceToEdit.name}"/>
+
+            <p:outputLabel for="editBaseUrl" value="Base URL:"/>
+            <p:inputText id="editBaseUrl" value="#{dynamicTicketView.selectedServiceToEdit.baseUrl}"/>
+
+            <p:outputLabel for="editAuthType" value="Tipo Autenticazione:"/>
+            <p:selectOneMenu id="editAuthType" value="#{dynamicTicketView.selectedServiceToEdit.authenticationType}">
+                <f:selectItem itemValue="" itemLabel="Nessuna"/>
+                <f:selectItem itemValue="Basic" itemLabel="Basic"/>
+                <f:selectItem itemValue="Bearer" itemLabel="Bearer"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="editUsername" value="Username:"/>
+            <p:inputText id="editUsername" value="#{dynamicTicketView.selectedServiceToEdit.username}"/>
+
+            <p:outputLabel for="editPassword" value="Password:"/>
+            <p:password id="editPassword" value="#{dynamicTicketView.selectedServiceToEdit.password}"/>
+
+            <p:outputLabel for="editToken" value="Token:"/>
+            <p:inputText id="editToken" value="#{dynamicTicketView.selectedServiceToEdit.token}"/>
+
+            <p:commandButton value="Aggiorna Servizio" actionListener="#{dynamicTicketView.updateService}" update="servicesTable" oncomplete="PF('editDialog').hide()"/>
+            <p:commandButton value="Annulla" onclick="PF('editDialog').hide()" type="button"/>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>
